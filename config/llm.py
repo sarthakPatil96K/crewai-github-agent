@@ -6,6 +6,8 @@ load_dotenv()
 
 def get_llm():
     return LLM(
-        model="groq/llama3-70b-8192",
-        api_key=os.getenv("GROQ_API_KEY")
+        model="groq/llama-3.1-8b-instant",
+        api_key=os.getenv("GROQ_API_KEY"),
+        temperature=0.2,
+        max_tokens=300
     )

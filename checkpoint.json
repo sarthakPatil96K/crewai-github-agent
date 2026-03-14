@@ -1,0 +1,8 @@
+{
+  "repo_url": "https://github.com/sarthakPatil96K/Heart-Disease-Prediction",
+  "repo_analysis": true,
+  "code_review": true,
+  "security_scan": true,
+  "documentation": true,
+  "issue_generation": true
+}
