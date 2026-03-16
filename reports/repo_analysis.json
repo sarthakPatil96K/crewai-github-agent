@@ -1,0 +1,5 @@
+{
+ "languages": ["Python"],
+ "folders": ["engine", "main.py", "run.py", "tempCodeRunnerFile.py", "www"],
+ "purpose": "A mini-project developed by Paras Baliram Patil, Sarthak Jagdish Patil, Vaishnav Sharad Patil, and Nikhil Anil Pawar under the guidance of Prof. Priyanka Bhilare at Rajiv Gandhi Institute of Technology, Mumbai. This project showcases a Python-based desktop voice assistant that simplifies everyday tasks using speech recognition, text-to-speech, and integrated APIs."
+}

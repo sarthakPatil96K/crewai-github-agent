@@ -7,6 +7,7 @@ from tasks.code_review_task import code_review_task
 from tasks.security_scan_task import security_scan_task
 from tasks.documentation_task import documentation_task
 from tasks.issue_generation_task import issue_generation_task
+from utils.report_writer import save_json, save_markdown
 
 load_dotenv()
 
@@ -115,44 +116,62 @@ def main():
     checkpoint = reset_if_new_repo(repo_url, checkpoint)
 
     # Task 1
-    run_task(
+    repo_result = run_task(
         "repo_analysis",
         repo_analysis_task,
         inputs,
         checkpoint
     )
 
+    if repo_result:
+        try:
+            save_json("repo_analysis.json", repo_result)
+        except:
+            save_markdown("repo_analysis.json", str(repo_result))
+
     # Task 2
-    run_task(
+    code_result = run_task(
         "code_review",
         code_review_task,
         inputs,
         checkpoint
     )
 
+    if code_result:
+        save_markdown("code_review.md", str(code_result))
+
     # Task 3
-    run_task(
+    security_result = run_task(
         "security_scan",
         security_scan_task,
         inputs,
         checkpoint
     )
 
+    if security_result:
+        save_markdown("security_report.md", str(security_result))
+
     # Task 4
-    run_task(
+    doc_result = run_task(
         "documentation",
         documentation_task,
         inputs,
         checkpoint
     )
 
+    if doc_result:
+        save_markdown("documentation.md", str(doc_result))
+
     # Task 5
-    run_task(
+    issue_result = run_task(
         "issue_generation",
         issue_generation_task,
         inputs,
         checkpoint
     )
+
+    if issue_result:
+        save_markdown("issues.md", str(issue_result))
 
     print("\n🎉 All tasks completed successfully!")
 

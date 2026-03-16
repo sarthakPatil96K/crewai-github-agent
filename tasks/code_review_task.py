@@ -1,17 +1,39 @@
 from crewai import Task
 from agents.code_review_agent import code_review_agent
 
+
 code_review_task = Task(
     description="""
-    Review the repository code and identify:
+Perform repository-wide code review.
 
-    - bad coding practices
-    - duplicate code
-    - long functions
-    - maintainability issues
-    """,
+Steps:
+
+1. Use the tool `index_repository_tool`
+   to retrieve indexed source code.
+
+2. Review each file in the index.
+
+Identify:
+- bad coding practices
+- duplicate code
+- long functions
+- maintainability issues
+- poor naming conventions
+
+IMPORTANT:
+Only analyze first 5 files returned by the tool.
+Do NOT include full code in the response.
+Summarize issues only.
+""",
+
     expected_output="""
-    A list of code improvement suggestions.
-    """,
+A concise markdown report describing:
+
+- file name
+- detected issue
+- explanation
+- suggested fix
+""",
+
     agent=code_review_agent
 )
